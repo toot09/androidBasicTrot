@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class Singer3Fragment : Fragment() {
 
@@ -16,6 +18,19 @@ class Singer3Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_singer3, container, false)
+
+        val items = mutableListOf<String>()
+
+        items.add("가인 노래1")
+        items.add("가인 노래2")
+        items.add("가인 노래3")
+
+        val rv = view.findViewById<RecyclerView>(R.id.singRV)
+        val rvAdpater = RVAdpater(items)
+
+        rv.adapter = rvAdpater
+        rv.layoutManager = LinearLayoutManager(context)
+
 
         view.findViewById<ImageView>(R.id.image1).setOnClickListener {
             it.findNavController().navigate(R.id.action_singer3Fragment_to_singer1Fragment)
